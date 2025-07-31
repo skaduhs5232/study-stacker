@@ -73,14 +73,13 @@ export const FiltroQuestoes = ({ onFiltroChange, loading }: FiltroQuestoesProps)
             <Select
               value={filtros.dificuldade || ''}
               onValueChange={(value) => 
-                setFiltros({ ...filtros, dificuldade: value as 'Fácil' | 'Médio' | 'Difícil' })
+                setFiltros({ ...filtros, dificuldade: value || undefined as any })
               }
             >
               <SelectTrigger>
                 <SelectValue placeholder="Todas as dificuldades" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Todas as dificuldades</SelectItem>
                 <SelectItem value="Fácil">Fácil</SelectItem>
                 <SelectItem value="Médio">Médio</SelectItem>
                 <SelectItem value="Difícil">Difícil</SelectItem>
