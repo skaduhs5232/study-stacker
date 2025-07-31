@@ -19,7 +19,7 @@ export const QuestaoCard = ({ questao }: QuestaoCardProps) => {
     if (respostaSelecionada === null) return;
     
     setRespondido(true);
-    const correto = respostaSelecionada === questao.resposta_correta - 1; // -1 porque API usa 1-5, array usa 0-4
+    const correto = respostaSelecionada === questao.RespostaCorreta - 1; // -1 porque API usa 1-5, array usa 0-4
     setAcertou(correto);
   };
 
@@ -49,7 +49,7 @@ export const QuestaoCard = ({ questao }: QuestaoCardProps) => {
         : 'border-border hover:border-primary/50';
     }
 
-    const isCorreta = index === questao.resposta_correta - 1;
+    const isCorreta = index === questao.RespostaCorreta - 1;
     const isSelecionada = index === respostaSelecionada;
 
     if (isCorreta) {
@@ -68,11 +68,11 @@ export const QuestaoCard = ({ questao }: QuestaoCardProps) => {
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <CardTitle className="text-lg leading-relaxed flex-1">
-            {questao.enunciado}
+            {questao.Enunciado}
           </CardTitle>
           <div className="flex flex-col gap-2 items-end">
-            <Badge className={getDificuldadeCor(questao.dificuldade)}>
-              {questao.dificuldade}
+            <Badge className={getDificuldadeCor(questao.Dificuldade)}>
+              {questao.Dificuldade}
             </Badge>
             {respondido && (
               <div className="flex items-center gap-1">
@@ -95,18 +95,18 @@ export const QuestaoCard = ({ questao }: QuestaoCardProps) => {
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-1">
             <Calendar size={16} />
-            {questao.ano_questao}
+            {questao.Ano_questao}
           </div>
           <div className="flex items-center gap-1">
             <BookOpen size={16} />
-            {questao.assuntos.join(', ')}
+            {(questao.Assuntos || []).join(', ')}
           </div>
         </div>
       </CardHeader>
 
       <CardContent className="space-y-4">
         <div className="space-y-3">
-          {questao.alternativas.map((alternativa, index) => (
+          {questao.Alternativas.map((alternativa, index) => (
             <button
               key={index}
               onClick={() => !respondido && setRespostaSelecionada(index)}
